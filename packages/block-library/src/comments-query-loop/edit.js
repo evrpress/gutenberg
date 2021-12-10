@@ -14,11 +14,12 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import QueryToolbar from './toolbar';
+import QueryOrderControls from './order-controls';
 
 const TEMPLATE = [ [ 'core/comment-template' ] ];
 
 export default function CommentsQueryLoopEdit( { attributes, setAttributes } ) {
-	const { perPage, tagName: TagName } = attributes;
+	const { perPage, tagName: TagName, order } = attributes;
 
 	const blockProps = useBlockProps();
 	const innerBlocksProps = useInnerBlocksProps( blockProps, {
@@ -42,6 +43,10 @@ export default function CommentsQueryLoopEdit( { attributes, setAttributes } ) {
 					onChange={ ( value ) =>
 						setAttributes( { tagName: value } )
 					}
+				/>
+				<QueryOrderControls
+					value={ order }
+					onChange={ ( value ) => setAttributes( { order: value } ) }
 				/>
 			</InspectorControls>
 			<TagName { ...innerBlocksProps } />
